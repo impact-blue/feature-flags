@@ -1,0 +1,76 @@
+{
+  "dependencies": {
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "autoprefixer": "10.4.14",
+    "clsx": "1.2.1",
+    "env-var": "7.3.0",
+    "next": "13.2.4",
+    "postcss": "8.4.21",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.2.7",
+    "typescript": "5.0.2",
+    "wireit": "0.9.5"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "13.2.4",
+    "@types/node": "18.15.6",
+    "@typescript-eslint/eslint-plugin": "5.56.0",
+    "@typescript-eslint/parser": "5.56.0",
+    "eslint": "8.36.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-no-relative-import-paths": "1.5.2",
+    "eslint-plugin-react": "7.32.2",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-tailwindcss": "3.10.1",
+    "eslint-plugin-typescript-sort-keys": "2.3.0",
+    "prettier": "2.8.6"
+  },
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "check": "wireit",
+    "check:eslint": "wireit",
+    "check:prettier": "wireit",
+    "check:tsc": "wireit",
+    "dev": "next dev",
+    "fix": "wireit",
+    "fix:eslint": "wireit",
+    "fix:prettier": "wireit",
+    "start": "next start"
+  },
+  "wireit": {
+    "check": {
+      "dependencies": [
+        "check:eslint",
+        "check:prettier",
+        "check:tsc"
+      ]
+    },
+    "check:eslint": {
+      "command": "eslint --ignore-path .prettierignore $(git diff --diff-filter d --name-only HEAD~1 | grep -E '\\.(js|ts|tsx)$' | xargs)"
+    },
+    "check:prettier": {
+      "command": "prettier --check $(git diff --diff-filter d --name-only HEAD~1 | xargs)"
+    },
+    "check:tsc": {
+      "command": "tsc --noEmit"
+    },
+    "fix": {
+      "dependencies": [
+        "fix:eslint",
+        "fix:prettier"
+      ]
+    },
+    "fix:eslint": {
+      "command": "eslint --fix --ignore-path .prettierignore $(git diff --diff-filter d --name-only HEAD~1 | grep -E '\\.(js|ts|tsx)$' | xargs)"
+    },
+    "fix:prettier": {
+      "command": "prettier --write $(git diff --diff-filter d --name-only HEAD~1 | xargs)"
+    }
+  }
+}

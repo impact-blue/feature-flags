@@ -1,0 +1,12 @@
+.next/
+.wireit/
+
+.DS_STORE
+.env
+.env.example
+.eslintcache
+.eslintignore
+.gitattributes
+.gitignore
+.prettierignore
+package-lock.json
