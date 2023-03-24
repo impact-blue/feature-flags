@@ -1,3 +1,3 @@
 module.exports = {
-  content: ['./**/*.tsx'],
+  content: ['pages/**/*.tsx'],
 };

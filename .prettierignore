@@ -10,3 +10,4 @@
 .gitignore
 .prettierignore
 package-lock.json
+CODEOWNERS

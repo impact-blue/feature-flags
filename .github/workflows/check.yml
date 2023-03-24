@@ -1,0 +1,23 @@
+jobs:
+  check:
+    concurrency:
+      cancel-in-progress: true
+      group: check-${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+      - uses: google/wireit@setup-github-actions-caching/v1
+      - run: npm ci
+      - run: npm run check
+    timeout-minutes: 15
+
+on:
+  push:
+    branches:
+      - 'bugfix/**'
+      - 'feature/**'
